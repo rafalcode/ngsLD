@@ -2,6 +2,8 @@
 
 `ngsLD` is a program to estimate pairwise linkage disequilibrium (LD) taking the uncertainty of genotype's assignation into account. It does so by avoiding genotype calling and using genotype likelihoods or posterior probabilities.
 
+RF fork rationale: hardcoding in Makefile, test seems to look for a file which is not there.
+
 ### Citation
 
 `ngsLD` is still work under progress...
