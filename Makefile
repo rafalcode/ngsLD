@@ -4,17 +4,15 @@ CXX=g++
 SHARED_DIR = ./shared
 SHARED_LIB = gen_func.cpp read_data.cpp threadpool.c
 
-CFLAGS = -I$(SHARED_DIR)
+# CFLAGS = -I$(SHARED_DIR)
+CFLAGS =`pkg-config --cflags zlib` `pkg-config --cflags gsl` -I$(SHARED_DIR)
 #DFLAGS = -g -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE
 DFLAGS = -O3 -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE
-LIB = -lgsl -lgslcblas -lz -lpthread
-
-
+# LIB = -lgsl -lgslcblas -lz -lpthread
+LIB =`pkg-config --libs zlib` `pkg-config --libs gsl` -lpthread
 
 all: $(SHARED_LIB) parse_args ngsLD
 	$(CXX) $(DFLAGS) *.o $(LIB) -o ngsLD
-
-
 
 $(SHARED_LIB):
 	$(CXX) $(CFLAGS) $(DFLAGS) -c $(SHARED_DIR)/$@
